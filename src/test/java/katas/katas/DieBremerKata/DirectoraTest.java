@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.springframework.test.util.AssertionErrors.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class DirectoraTest {
         Directora directora = new Directora(coro);
         directora.allAnimalsSing();
         assertEquals(2,coro.size());
-        //assertTrue(coro.get(0).isSinging());
+        assertTrue(coro.get(0).isSinging());
     }
 
     @Test
@@ -46,7 +47,17 @@ public class DirectoraTest {
         directora.allAnimalsSing();
         directora.allAnimalsStopSinging();
         assertFalse(coro.get(0).isSinging());
+    }
 
+    @Test
+    void whatAlertAreAnimalDontSinging() {
+        ArrayList<Animal> coro = new ArrayList<Animal>();
+        coro.add(new Cat("Lola", "miau"));
+        coro.add(new Donkey("Pedro", "Iooo"));
+
+        Directora directora = new Directora(coro);
+        directora.allAnimalsStopSinging();
+        assertThat(coro.get(1).alert(), equalTo("The donkey Pedro don't want sing"));
 
     }
 }

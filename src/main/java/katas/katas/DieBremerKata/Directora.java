@@ -15,8 +15,6 @@ public class Directora {
             animal.isSinging();
 
         }
-
-
     }
 
     public void allAnimalsStopSinging() {
