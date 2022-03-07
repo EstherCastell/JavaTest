@@ -3,7 +3,7 @@ package katas.katas.DieBremerKata;
 public abstract class Animal {
     private String name;
     private String sound;
-    private Boolean startsSinging = false;
+    private Boolean isSinging = false;
 
     public Animal(String name, String sound) {
         this.name = name;
@@ -20,20 +20,20 @@ public abstract class Animal {
     }
 //funciones en protected
 
-    protected Boolean startsSinging() {
-        return startsSinging;
+    protected Boolean isSinging() {
+        return isSinging;
 
     }
-    protected void sing() {
-        this.startsSinging = true;
+    protected void startSinging() {
+        this.isSinging = true;
     }
 
     protected void dontSing() {
-        this.startsSinging = false;
+        this.isSinging = false;
     }
 
     protected String alert() {
-        if (startsSinging) {
+        if (isSinging) {
             return "The animal" + " " + name + " " + "is singing" + " " + sound;
         } else {
             return "The animal" + " " + name + " " + "don't want sing";

@@ -54,9 +54,11 @@ public class Calculator {
         }
     }
 
-    //public List getBiggerThan5(List<Integer> list) {
-      //  for (int number = 0; number < list.size(); number++) {
-        //     if (number < 5)
+    /*public List getBiggerThan5(List<Integer> list) {
+        for ( Integer integer : list
+             ) { total < 5;
+            
+        }*/
           //       return list;
         //}
 

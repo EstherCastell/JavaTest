@@ -9,14 +9,21 @@ public class Directora {
         this.coro = coro;
     }
     public void allAnimalsSing() {
-        //coro.add(new Cat("Lola", "miau"));
-        //coro.add(new Donkey("Pedro", "Ioo0"));
+
         for (Animal animal : coro) {
-            animal.sing();
+            animal.startSinging();
+            animal.isSinging();
+
         }
 
-        //return allAnimalsSing();
 
     }
 
+    public void allAnimalsStopSinging() {
+        for (Animal animal : coro) {
+            animal.dontSing();
+            animal.isSinging();
+
+        }
+    }
 }

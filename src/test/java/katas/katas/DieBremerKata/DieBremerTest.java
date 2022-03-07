@@ -15,24 +15,24 @@ public class DieBremerTest {
     }
 
     @Test
-    void AnimalSartsSing() {
+    void CatSartsSing() {
         Cat cat = new Cat("Kitty", "Miau");
-        cat.sing();
-        assertTrue(cat.startsSinging());
+        cat.startSinging();
+        assertTrue(cat.isSinging());
     }
 
     @Test
-    void AnimalStopSing() {
+    void CatStopSing() {
         Cat cat = new Cat("Kitty", "Miau");
-        cat.sing();
+        cat.startSinging();
         cat.dontSing();
-        assertFalse(cat.startsSinging());
+        assertFalse(cat.isSinging());
     }
 
     @Test
     void CatAlertWhenIsSinging() {
         Cat cat = new Cat("Kitty", "Miau");
-        cat.sing();
+        cat.startSinging();
         assertThat(cat.alert(), is("The cat Kitty is singing Miau"));
     }
 
@@ -47,7 +47,7 @@ public class DieBremerTest {
     @Test
     void DonkeyAlertWhenIsSinging() {
         Donkey donkey = new Donkey("Burro", "Iooo");
-        donkey.sing();
+        donkey.startSinging();
         assertThat(donkey.alert(), is("The donkey Burro is singing Iooo"));
     }
 
@@ -55,7 +55,7 @@ public class DieBremerTest {
     void AnimalsAlertWhenIsSinging() {
         Animal animal = new Animal("Animal", "Tarara") {
         };
-        animal.sing();
+        animal.startSinging();
         assertThat(animal.alert(), is("The animal Animal is singing Tarara"));
     }
 

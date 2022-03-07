@@ -8,7 +8,7 @@ public class Donkey extends Animal{
 
     @Override
     protected String alert() {
-        if (startsSinging()) {
+        if (isSinging()) {
             return "The donkey" + " " + getName() + " " + "is singing" + " " + getSound();
         } else {
             return "The donkey" + " " + getName() + " " + "don't want sing";
