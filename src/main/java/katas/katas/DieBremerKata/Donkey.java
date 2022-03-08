@@ -7,7 +7,7 @@ public class Donkey extends Animal{
     }
 
     @Override
-    protected String alert() {
+    public String alert() {
         if (isSinging()) {
             return "The donkey" + " " + getName() + " " + "is singing" + " " + getSound();
         } else {

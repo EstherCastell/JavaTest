@@ -14,24 +14,24 @@ public class DirectoraTest {
     @Test
     void directoraOrderToSing() {
 
-        ArrayList<Animal> coro = new ArrayList<Animal>();
+        ArrayList<Singers> coro = new ArrayList<Singers>();
         coro.add(new Cat("Lola", "miau"));
         coro.add(new Donkey("Pedro", "Iooo"));
 
         Directora directora = new Directora(coro);
-        directora.allAnimalsSing();
+        directora.allSing();
         assertEquals(2,coro.size());
         assertTrue(coro.get(0).isSinging());
     }
 
     @Test
     void whatAlertAreAnimalSinging() {
-        ArrayList<Animal> coro = new ArrayList<Animal>();
+        ArrayList<Singers> coro = new ArrayList<Singers>();
         coro.add(new Cat("Lola", "miau"));
         coro.add(new Donkey("Pedro", "Iooo"));
 
         Directora directora = new Directora(coro);
-        directora.allAnimalsSing();
+        directora.allSing();
 
         assertThat(coro.get(1).alert(), equalTo("The donkey Pedro is singing Iooo"));
 
@@ -39,25 +39,35 @@ public class DirectoraTest {
 
     @Test
     void directoraOrderStopSinging(){
-        ArrayList<Animal> coro = new ArrayList<Animal>();
+        ArrayList<Singers> coro = new ArrayList<Singers>();
         coro.add(new Cat("Lola", "miau"));
         coro.add(new Donkey("Pedro", "Iooo"));
 
         Directora directora = new Directora(coro);
-        directora.allAnimalsSing();
-        directora.allAnimalsStopSinging();
+        directora.allSing();
+        directora.allStopSinging();
         assertFalse(coro.get(0).isSinging());
     }
 
     @Test
     void whatAlertAreAnimalDontSinging() {
-        ArrayList<Animal> coro = new ArrayList<Animal>();
+        ArrayList<Singers> coro = new ArrayList<Singers>();
         coro.add(new Cat("Lola", "miau"));
         coro.add(new Donkey("Pedro", "Iooo"));
 
         Directora directora = new Directora(coro);
-        directora.allAnimalsStopSinging();
+        directora.allStopSinging();
         assertThat(coro.get(1).alert(), equalTo("The donkey Pedro don't want sing"));
 
+    }
+    @Test
+    void directoraAddAnimalsAndComicCharacters() {
+        ArrayList<Singers> coro = new ArrayList<Singers>();
+        coro.add(new Cat("Lola", "miau"));
+        coro.add(new ComicCharacter("Piolyn", "lalala"));
+        coro.add(new ComicCharacter("Popeye", "Tralara"));
+
+        Directora directora = new Directora(coro);
+        assertThat(coro.size(), equalTo(3));
     }
 }

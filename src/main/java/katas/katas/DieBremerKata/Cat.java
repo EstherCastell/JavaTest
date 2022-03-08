@@ -9,7 +9,7 @@ public class Cat extends Animal {
 
     @Override
 
-    protected String alert() {
+    public String alert() {
         if (isSinging()) {
             return "The cat" + " " + getName() + " " + "is singing" + " " + getSound();
         } else {

@@ -1,6 +1,6 @@
 package katas.katas.DieBremerKata;
 // siempre en private
-public abstract class Animal {
+public abstract class Animal implements Singers {
     private String name;
     private String sound;
     private Boolean isSinging = false;
@@ -20,19 +20,19 @@ public abstract class Animal {
     }
 //funciones en protected
 
-    protected Boolean isSinging() {
+    public Boolean isSinging() {
         return isSinging;
 
     }
-    protected void startSinging() {
+    public void startSinging() {
         this.isSinging = true;
     }
 
-    protected void dontSing() {
+    public void dontSing() {
         this.isSinging = false;
     }
 
-    protected String alert() {
+    public String alert() {
         if (isSinging) {
             return "The animal" + " " + name + " " + "is singing" + " " + sound;
         } else {

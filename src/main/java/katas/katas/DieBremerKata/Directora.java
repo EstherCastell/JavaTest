@@ -2,25 +2,25 @@ package katas.katas.DieBremerKata;
 
 import java.util.ArrayList;
 
-public class Directora {
-    ArrayList<Animal> coro = new ArrayList<Animal>();
+public class Directora  {
+    ArrayList<Singers> coro = new ArrayList<Singers>();
 
-    public Directora(ArrayList<Animal> coro) {
+    public Directora(ArrayList<Singers> coro) {
         this.coro = coro;
     }
-    public void allAnimalsSing() {
-
-        for (Animal animal : coro) {
-            animal.startSinging();
-            animal.isSinging();
+    public void allSing() {
+//por cada animal en coro
+        for (Singers singers : coro) {
+            singers.startSinging();
+            singers.isSinging();
 
         }
     }
 
-    public void allAnimalsStopSinging() {
-        for (Animal animal : coro) {
-            animal.dontSing();
-            animal.isSinging();
+    public void allStopSinging() {
+        for (Singers singers : coro) {
+            singers.dontSing();
+            singers.isSinging();
 
         }
     }
