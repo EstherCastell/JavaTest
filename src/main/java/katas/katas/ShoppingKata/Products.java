@@ -4,7 +4,7 @@ abstract class Products {
     private String name;
     private double price;
 
-    public Products(String name) {
+    public Products(String name, double price) {
     }
 
     public String getName() {
