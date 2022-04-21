@@ -69,5 +69,6 @@ public class DirectoraTest {
 
         Directora directora = new Directora(coro);
         assertThat(coro.size(), equalTo(3));
-    }
+
+          }
 }

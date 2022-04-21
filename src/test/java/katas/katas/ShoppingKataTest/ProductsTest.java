@@ -16,12 +16,20 @@ public class ProductsTest {
         assertThat(freeProduct.getPrice(), equalTo(0.0) );
     }
     @Test
-    void allproductHaveName(){
-        FreeProduct freeProduct = new FreeProduct("perejil", 0.0);
-        FoodProduct foodProduct = new FoodProduct("fresa", 0.0);
+    void allproductHaveNameAndPrice(){
+        FreeProduct freeProduct = new FreeProduct("platano", 0.0);
+        FoodProduct foodProduct = new FoodProduct("fresa", 0.5);
 
-        assertThat(freeProduct.getName(), is(freeProduct.getName()));
-        //assertThat(cat.getSound(), is(cat.getSound()));
+        assertThat(freeProduct, hasProperty("name"));
+        assertThat(foodProduct, hasProperty("name"));
+        assertThat(freeProduct, hasProperty("price"));
+        assertThat(foodProduct, hasProperty("price"));
     }
+    /*@Test
+    void foodProductsCanHaveADiscount(){
+        FoodProduct foodProduct = new FoodProduct("sandia", 5.0);
+        FoodProduct.applyDiscount();
+        assertThat(foodProduct.discount(), equalTo("discount"));
+    }*/
 
 }
