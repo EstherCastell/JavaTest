@@ -1,5 +1,6 @@
 package katas.katas.KataService;
 
+import katas.katas.KataService.Exceptions.RentServiceExceptions;
 import katas.katas.KataService.Models.Car;
 import katas.katas.KataService.Models.Rent;
 import katas.katas.KataService.Models.User;
@@ -43,7 +44,7 @@ class RentServiceTest {
         Car car = new Car(1L, "opel", "A000y");
         Rent rent = new Rent(1L,user, car, LocalDate.now());
 
-        var rentservice = new RentService(carRepository, userRepository, rentRepository);
+        var rentService = new RentService(carRepository, userRepository, rentRepository);
 
         Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
         Mockito.when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
@@ -52,6 +53,51 @@ class RentServiceTest {
         assertEquals(user, userRepository.findById(user.getId()).get());
         assertEquals(car, carRepository.findById(car.getId()).get());
         assertEquals(rent, rentRepository.save(new Rent (1L, new User(3L, "name"), new Car(3L, "brand", "P888"), LocalDate.now())));
+    }
+    @Test
+    void shouldThrowExceptionIfUserDoesntExist(){
+        Rent rent = new Rent();
+
+        var rentService = new RentService(carRepository, userRepository, rentRepository);
+
+        Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.empty());
+        Mockito.when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
+        Mockito.when(rentRepository.save(any(Rent.class))).thenReturn(rent);
+
+        RentServiceExceptions thrown = assertThrows(RentServiceExceptions.class, () -> rentService.rentACar(user.getId(), car.getId()));
+
+        assertEquals("User not found", thrown.getMessage());
+        assertEquals("R-101", thrown.getCode());
+    }
+    @Test
+    void shouldThrowExceptionIfCarDoesntExist(){
+        Rent rent = new Rent();
+
+        var rentService = new RentService(carRepository, userRepository, rentRepository);
+
+        Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
+        Mockito.when(carRepository.findById(car.getId())).thenReturn(Optional.empty());
+        Mockito.when(rentRepository.save(any(Rent.class))).thenReturn(rent);
+
+       RentServiceExceptions thrown = assertThrows(RentServiceExceptions.class, () -> rentService.rentACar(user.getId(), car.getId()));
+
+       assertEquals("Car not found", thrown.getMessage());
+       assertEquals("R-102", thrown.getCode());
+    }
+    @Test
+    void cantRentACarIfTheCarIsRented(){
+        Rent rent = new Rent();
+
+        var rentService = new RentService(carRepository, userRepository, rentRepository);
+
+        Mockito.when(userRepository.findById(user.getId())).thenReturn(Optional.of(user));
+        Mockito.when(carRepository.findById(car.getId())).thenReturn(Optional.of(car));
+        Mockito.when(rentRepository.findCarById(car)).thenReturn(Optional.of(rent));
+
+        RentServiceExceptions thrown = assertThrows(RentServiceExceptions.class, () -> rentService.rentACar(user.getId(), car.getId()));
+
+        assertEquals("This car is alredy rented", thrown.getMessage());
+        assertEquals("R-001", thrown.getCode());
     }
 
 }
